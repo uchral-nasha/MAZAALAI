@@ -2,8 +2,8 @@ FROM node:20-alpine AS builder
 
 WORKDIR /app
 
-COPY ./admin/package.json ./
-COPY ./admin/yarn.lock ./
+COPY ./front/package.json ./
+COPY ./front/yarn.lock ./
 RUN yarn install
 
 FROM node:20-alpine
@@ -19,7 +19,7 @@ RUN apk add --no-cache tzdata && \
 
 COPY --from=builder /app ./
 
-EXPOSE 3000
+EXPOSE 3030
 
-ENV NUXT_HOST=0.0.0.0
-ENV NUXT_PORT=3000
+ENV NEXT_HOST=0.0.0.0
+ENV NEXT_PORT=3030
